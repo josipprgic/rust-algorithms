@@ -1,7 +1,8 @@
 use log::info;
 
-mod selection_sort;
-mod insertion_sort;
+pub mod algorithms;
+
+use algorithms::{selection_sort, insertion_sort};
 
 fn main() {
     env_logger::init();
