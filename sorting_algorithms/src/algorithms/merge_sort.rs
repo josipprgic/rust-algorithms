@@ -1,3 +1,4 @@
+// TODO Add doc
 pub fn sort<T: std::cmp::Ord + Clone>(collection: Vec<T>) -> Vec<T> {
     return merge_sort(&collection[..]);
 }
