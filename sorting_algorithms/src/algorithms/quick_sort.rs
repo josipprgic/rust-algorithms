@@ -1,3 +1,5 @@
+use crate::util::swap;
+
 //TODO add doc
 pub fn sort<T: std::cmp::Ord + Copy>(collection: Vec<T>) -> Vec<T> {
     let mut col = collection.clone();
@@ -38,13 +40,4 @@ fn quick_sort<T: std::cmp::Ord + Copy>(collection: &mut [T]) -> Vec<T> {
     }
 
     return result;
-}
-
-fn swap<T: Copy>(collection: &mut [T], i: usize, j: usize) -> &mut [T] {
-    if i != j {
-        let elem = collection[i];
-        collection[i] = collection[j];
-        collection[j] = elem;
-    }
-    collection
 }
