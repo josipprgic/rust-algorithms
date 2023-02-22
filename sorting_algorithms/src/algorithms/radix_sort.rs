@@ -1,4 +1,3 @@
-// TODO finish
 pub fn sort(collection: Vec<isize>) -> Vec<isize> {
     let mut max = collection[0];
     let mut min = collection[0];
@@ -14,13 +13,7 @@ pub fn sort(collection: Vec<isize>) -> Vec<isize> {
 
     max -= min;
     
-    let mut pow = 0;
-    for i in 1..collection.len() {
-        if 2 ^ i > collection.len() {
-            pow = i;
-            break;
-        }
-    }
+    let pow = collection.len().next_power_of_two();
 
     let mut col = Vec::new();
 
@@ -33,42 +26,32 @@ pub fn sort(collection: Vec<isize>) -> Vec<isize> {
         .collect::<Vec<isize>>();
 }
 
-fn radix_sort(collection: &mut [usize], max: usize, exp: usize) -> Vec<usize> {
+fn radix_sort(collection: &mut [usize], max: usize, pow: usize) -> Vec<usize> {
     let mut col = Vec::new();
-    let mut output = Vec::new();
 
     for i in collection {
         col.push(*i);
-        output.push(0);
     }
 
-    let pow = 1 << exp;
-    let mut n = 0;
-    for i in 0..max {
-        if i * exp > max {
-            n = i;
-            break
+    let mut place = 1;
+    while place <= max {
+        let digit_of = |x| x as usize / place % pow;
+
+        let mut count_arr = vec![0; pow];
+        for &x in col.iter() {
+            count_arr[digit_of(x)] += 1;
         }
+        for i in 1..pow {
+            count_arr[i] += count_arr[i - 1];
+        }
+
+        for &x in col.to_owned().iter().rev() {
+            count_arr[digit_of(x)] -= 1;
+            col[count_arr[digit_of(x)]] = x;
+        }
+
+        place *= pow;
     }
 
-    for j in 0..n {
-        let mut count_arr = Vec::new();
-        for _ in 0..max+1 {
-            count_arr.push(0)
-        }
-
-        for i in 0..col.len() {
-            count_arr[(col[i] >> (j * exp)) % pow] += 1;
-        }
-
-        for i in (0..col.len()).rev() {
-            output[count_arr[(col[i] >> (j * exp)) % pow] - 1] = col[i];
-            count_arr[(col[i] >> (j * exp)) % pow] -= 1;
-        }
-
-        println!("{:?}", col);
-        col = output.clone()
-    }
-
-    return output;
+    return col;
 }
