@@ -1,0 +1,2 @@
+[workspace]
+members = ["sorting_algorithms", "game_of_life"]
