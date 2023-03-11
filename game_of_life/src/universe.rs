@@ -73,3 +73,50 @@ impl Universe {
         count
     }
 }
+
+
+#[test]
+fn test_universe_create() {
+    let un = Universe::new(11, 14);
+    assert_eq!(un.width, 11);
+    assert_eq!(un.height, 14);
+    assert_eq!(un.cells.into_iter().filter(|c|  *c == Cell::Dead).count(), 11 * 14)
+}
+
+#[test]
+fn test_universe_toggle() {
+    let mut un = Universe::new(6, 4);
+    un.toggle(2, 1);
+    un.toggle(0, 0);
+    un.toggle(5, 3);
+    un.toggle(2, 1); // second time
+    un.toggle(1, 2);
+
+    assert_eq!(un.cells.clone().into_iter()
+                   .filter(|c|  *c == Cell::Dead)
+                   .count(), 6 * 4 - 3); // Three toggled on
+    assert_eq!(un.cells[0], Cell::Alive);
+    assert_eq!(un.cells[3 * un.width + 5], Cell::Alive);
+    assert_eq!(un.cells[2 * un.width + 1], Cell::Alive);
+}
+
+#[test]
+fn test_spaceship_tick() {
+    let mut un = Universe::new(6, 6);
+    let input = vec![(1,2), (2,3), (3,1), (3,2), (3,3)];
+    for t in input {
+        un.toggle(t.0, t.1);
+    }
+
+    un.tick();
+
+    assert_eq!(un.iter_cnt, 1);
+    assert_eq!(un.cells.clone().into_iter()
+                   .filter(|c|  *c == Cell::Dead)
+                   .count(), 6 * 6 - 5);
+
+    let output = vec![(2,1), (2,3), (3,2), (3,3), (4,2)];
+    for t in output {
+        assert_eq!(un.cells[t.1 * un.width + t.0], Cell::Alive, "Cell not alive for coord: {:?}", t)
+    }
+}
