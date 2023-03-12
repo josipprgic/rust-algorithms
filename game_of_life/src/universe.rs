@@ -1,3 +1,5 @@
+use std::iter::Enumerate;
+use std::slice::Chunks;
 use crate::cell::Cell;
 
 pub struct Universe {
@@ -43,6 +45,16 @@ impl Universe {
 
         let idx = y * self.width + x;
         self.cells[idx] = self.cells[idx].toggle()
+    }
+
+    pub fn reset(&mut self) {
+        self.cells = self.cells.clone().into_iter().map(|_| Cell::Dead).collect::<Vec<Cell>>();
+    }
+
+    pub fn enumerate_rows(&self) -> Enumerate<Chunks<'_, Cell>> {
+        self.cells
+            .chunks(self.width as usize)
+            .enumerate()
     }
 
     fn count_neighbors(&self, idx: usize) -> u8 {

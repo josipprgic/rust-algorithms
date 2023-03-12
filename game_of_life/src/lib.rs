@@ -1,2 +1,2 @@
-mod universe;
-mod cell;
+pub mod universe;
+pub mod cell;
