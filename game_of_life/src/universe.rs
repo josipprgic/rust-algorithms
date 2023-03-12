@@ -1,4 +1,3 @@
-use log::log;
 use crate::cell::Cell;
 
 pub struct Universe {
