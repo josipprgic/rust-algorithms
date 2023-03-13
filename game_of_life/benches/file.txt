@@ -1,0 +1,15 @@
+
+running 4 tests
+test universe::test_some ... ignored
+test universe::test_spaceship_tick ... ignored
+test universe::test_universe_create ... ignored
+test universe::test_universe_toggle ... ignored
+
+test result: ok. 0 passed; 0 failed; 4 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 1 test
+test universe_ticks ... bench:     436,111 ns/iter (+/- 93,751)
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 1 measured; 0 filtered out; finished in 0.80s
+
