@@ -131,3 +131,42 @@ fn test_spaceship_tick() {
         assert_eq!(un.cells[t.1 * un.width + t.0], Cell::Alive, "Cell not alive for coord: {:?}", t)
     }
 }
+
+#[test]
+fn test_some() {
+    let mut universe = Universe::new(64, 64);
+    (0..64 * 64).into_iter()
+        .filter(|i| i % 2 == 0 || i % 7 == 0)
+        .for_each(|id| universe.toggle(id%64, id/64));
+
+    universe.tick();
+    universe.tick();
+    universe.tick();
+    universe.tick();
+    universe.tick();
+    universe.tick();
+    universe.tick();
+    universe.tick();
+    universe.tick();
+    universe.tick();
+    universe.tick();
+    universe.tick();
+    universe.tick();
+    universe.tick();
+    universe.tick();
+    universe.tick();
+    universe.tick();
+    universe.tick();
+    universe.tick();
+    universe.tick();
+    universe.tick();
+
+    let c: usize = universe.enumerate_rows()
+        .map(|(_n, cells)| {
+            cells.iter()
+                .enumerate()
+                .filter(|(_, c)| *c == &Cell::Alive)
+                .count()
+        }).sum();
+    println!("{c}");
+}
