@@ -3,8 +3,6 @@
 extern crate test;
 extern crate jpcd_game_of_life;
 
-use jpcd_game_of_life::cell::Cell;
-
 #[bench]
 fn universe_ticks(b: &mut test::Bencher) {
     let mut universe = jpcd_game_of_life::universe::Universe::new(64, 64);

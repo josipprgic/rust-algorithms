@@ -162,7 +162,7 @@ fn test_some() {
     universe.tick();
 
     let c: usize = universe.enumerate_rows()
-        .map(|(n, cells)| {
+        .map(|(_n, cells)| {
             cells.iter()
                 .enumerate()
                 .filter(|(_, c)| *c == &Cell::Alive)
