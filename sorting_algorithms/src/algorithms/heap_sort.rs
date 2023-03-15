@@ -1,11 +1,11 @@
 use crate::util::swap;
 
-pub fn sort<T: std::cmp::Ord + Copy>(collection: Vec<T>) -> Vec<T> {
+pub fn sort<T: Ord + Copy>(collection: Vec<T>) -> Vec<T> {
     let mut col = collection.to_owned();
     heap_sort(&mut col)
 }
 
-fn heap_sort<T: std::cmp::Ord + Copy>(collection: &mut [T]) -> Vec<T> {
+fn heap_sort<T: Ord + Copy>(collection: &mut [T]) -> Vec<T> {
 
     let mut col = collection;
     for i in (0..col.len() / 2).rev() {
@@ -20,7 +20,7 @@ fn heap_sort<T: std::cmp::Ord + Copy>(collection: &mut [T]) -> Vec<T> {
     col.to_vec()
 }
 
-fn heapify<T: std::cmp::Ord + Copy>(col: &mut [T], n: usize, i: usize) -> &mut [T] {
+fn heapify<T: Ord + Copy>(col: &mut [T], n: usize, i: usize) -> &mut [T] {
     let mut largest = i;
     let left = 2 * i + 1;
     let right = 2 * i + 2;

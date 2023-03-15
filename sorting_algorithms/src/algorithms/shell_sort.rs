@@ -1,4 +1,5 @@
-pub fn sort<T: std::cmp::Ord + Copy>(col: &mut Vec<T>) -> &Vec<T> {
+
+pub fn sort<T: Ord + Copy>(col: &mut Vec<T>) -> &Vec<T> {
     let mut gap = col.len() / 2;
     loop {
         shell_sort(col, gap);
@@ -11,7 +12,7 @@ pub fn sort<T: std::cmp::Ord + Copy>(col: &mut Vec<T>) -> &Vec<T> {
     col
 }
 
-fn shell_sort<T: std::cmp::Ord + Copy>(col: &mut Vec<T>, gap: usize) {
+fn shell_sort<T: Ord + Copy>(col: &mut Vec<T>, gap: usize) {
     for i in gap..col.len() {
         for j in 0..(col.len() / gap) {
             if (j + 1) * gap > i {

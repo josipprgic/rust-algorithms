@@ -1,12 +1,12 @@
 use crate::util::swap;
 
 //TODO add doc
-pub fn sort<T: std::cmp::Ord + Copy>(collection: Vec<T>) -> Vec<T> {
+pub fn sort<T: Ord + Copy>(collection: Vec<T>) -> Vec<T> {
     let mut col = collection.clone();
     quick_sort(&mut col[..]).to_vec()
 }
 
-fn quick_sort<T: std::cmp::Ord + Copy>(collection: &mut [T]) -> Vec<T> {
+fn quick_sort<T: Ord + Copy>(collection: &mut [T]) -> Vec<T> {
     let len = collection.len();
     if len <= 1 {
         return collection.to_vec()

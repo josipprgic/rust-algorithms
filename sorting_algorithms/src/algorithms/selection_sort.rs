@@ -3,12 +3,12 @@
 // into the index from which we started finding the smallest element.
 //
 // Time complexity: O(n^2) -> For each element there is a loop that runs until the end of array
-pub fn sort<T: std::cmp::Ord>(mut collection: Vec<T>) -> Vec<T> {
+pub fn sort<T: Ord>(mut collection: Vec<T>) -> Vec<T> {
     select_sort(&mut collection, 0);
     collection
 }
 
-fn select_sort<T: std::cmp::Ord>(collection: &mut Vec<T>, sorted_subarray_length: usize) {
+fn select_sort<T: Ord>(collection: &mut Vec<T>, sorted_subarray_length: usize) {
     if sorted_subarray_length == collection.len() - 1 {
         return;
     }
