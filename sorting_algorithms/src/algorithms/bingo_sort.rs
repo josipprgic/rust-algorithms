@@ -1,4 +1,4 @@
-pub fn sort<T: std::cmp::Ord + Copy>(col: &mut Vec<T>) -> &Vec<T> {
+pub fn sort<T: Ord + Copy>(col: &mut Vec<T>) -> &Vec<T> {
     let mut i = 0;
     loop {
         let bingo = smallest(&col[..], i);
@@ -12,7 +12,7 @@ pub fn sort<T: std::cmp::Ord + Copy>(col: &mut Vec<T>) -> &Vec<T> {
     col
 }
 
-fn bingo_sort<T: std::cmp::Ord>(col: &mut Vec<T>, bingo: T, start: usize) -> usize {
+fn bingo_sort<T: Ord>(col: &mut Vec<T>, bingo: T, start: usize) -> usize {
     let mut swap_count = 0;
     for i in start..col.len() {
         if col[i] == bingo {
@@ -26,7 +26,7 @@ fn bingo_sort<T: std::cmp::Ord>(col: &mut Vec<T>, bingo: T, start: usize) -> usi
     swap_count
 }
 
-fn smallest<T: std::cmp::Ord + Copy>(col: &[T], start: usize) -> T {
+fn smallest<T: Ord + Copy>(col: &[T], start: usize) -> T {
     let mut min = &col[start];
     for i in start..col.len() {
         if col[i] < *min {

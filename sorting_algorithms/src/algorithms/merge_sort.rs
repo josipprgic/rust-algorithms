@@ -1,9 +1,9 @@
 // TODO Add doc
-pub fn sort<T: std::cmp::Ord + Clone>(collection: Vec<T>) -> Vec<T> {
+pub fn sort<T: Ord + Clone>(collection: Vec<T>) -> Vec<T> {
     return merge_sort(&collection[..]);
 }
 
-fn merge_sort<T: std::cmp::Ord + Clone>(collection: &[T]) -> Vec<T> {
+fn merge_sort<T: Ord + Clone>(collection: &[T]) -> Vec<T> {
     if collection.len() == 1 {
         return (*collection).to_vec()
     }
