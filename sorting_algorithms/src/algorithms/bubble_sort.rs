@@ -2,11 +2,11 @@
 // aren't in correct order swap them. Continue looping until there are no swaps.
 //
 // time complexity: O(n^2) (complexity is optimized by stopping the search if no swaps occurr)
-pub fn sort<T: std::cmp::Ord>(collection: Vec<T>) -> Vec<T> {
+pub fn sort<T: Ord>(collection: Vec<T>) -> Vec<T> {
     bubble_sort(collection)
 }
 
-fn bubble_sort<T: std::cmp::Ord>(mut collection: Vec<T>) -> Vec<T> {
+fn bubble_sort<T: Ord>(mut collection: Vec<T>) -> Vec<T> {
     let mut has_swapped = false;
 
     loop {

@@ -15,7 +15,7 @@ fn main() {
     let v = vec![1, 32, -2, 23, 3, 5, 0, -111];
     info!("{:?}", selection_sort::sort(v));
     let v = vec![1, 32, -2, 23, 3, 5, 0, -111];
-    info!("{:?}", insertion_sort::sort(v));
+    println!("{:?}", insertion_sort::sort(v));
     let v = vec![1, 32, -2, 23, 3, 5, 0, -111];
     println!("{:?}", bubble_sort::sort(v));
     let v = vec![1, 32, -2, 23, 3, 5, 0, -111];
@@ -34,4 +34,14 @@ fn main() {
     println!("{:?}", bingo_sort::sort(&mut v));
     let mut v = vec![1, 321, -2, -23, 3, 15, 0, -111, -111, 32, 12, 1, 1];
     println!("{:?}", shell_sort::sort(&mut v));
+
+    let mut v = vec![1, 32, -2, 23, 3, 5, 0, -111];
+    let steps = insertion_sort::sorting_steps(v.clone());
+    println!("{:?} {:?}", v, steps);
+
+    for s in steps {
+        let elem = v.remove(s.0);
+        v.insert(s.1, elem);
+        println!("{:?}", v)
+    }
 }

@@ -1,8 +1,10 @@
 [package]
-name = "sorting_algorithms"
-version = "0.1.0"
+name = "jpcd_sorting_algorithms"
+version = "0.0.1"
 edition = "2021"
-
+description = "Implementation of some sorting algorithms suitable for GUI applications."
+license = "MIT OR Apache-2.0"
+readme = "README.md"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
